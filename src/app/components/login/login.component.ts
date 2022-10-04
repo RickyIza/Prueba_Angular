@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
-import Swal from  'sweetalert2'
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-login',
@@ -11,6 +11,10 @@ import Swal from  'sweetalert2'
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
+
+  us: string = '';
+  ps: string = '';
+
 
   constructor(private fb: FormBuilder, private auth: AuthService, private router: Router) { }
 
@@ -25,21 +29,19 @@ export class LoginComponent implements OnInit {
   onLogin() {
     if (this.loginForm.valid) {
       //Enviar Objetos
-      console.log(this.loginForm.value)
       this.auth.login().subscribe
         ({
           next: (v) => {
-            console.log(v);
-            const user = v.find((a: any) => {
-              return a.user === this.loginForm.value.user && a.pass === this.loginForm.value.pass
-            })
-            console.log('res', user);
 
-            if (this.loginForm.value.user=='agrigorescu1' && this.loginForm.value.pass=='mFafYuhrv') 
-            {
+            this.us = v.user
+            this.ps = v.pass
+            console.log(this.ps)
+            //  if (this.loginForm.value.user=='agrigorescu1' && this.loginForm.value.pass=='mFafYuhrv') 
 
-              localStorage.setItem("nombre",this.loginForm.value.user)
-              this.loginForm.reset();   
+            if (this.us == this.loginForm.value.user && this.ps == this.loginForm.value.pass) {
+
+              localStorage.setItem("nombre", this.loginForm.value.user)
+              this.loginForm.reset();
               Swal.fire({
                 icon: 'success',
                 title: 'Login...',
@@ -52,19 +54,28 @@ export class LoginComponent implements OnInit {
               Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: 'Ingrese los datos correstos!',
+                text: 'Ingrese los datos correctos!',
               })
             }
           },
-          error: (e) => {        
-            alert("No se puede ingrsar al back")},
+          error: (e) => {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'No se puede conectar a la api',
+            })
+          },
           complete: () => console.info('complete')
         })
 
     } else {
       //error
       this.validateForm(this.loginForm);
-      alert('Formulario no valido')
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Ingrese todos los datos!',
+      })
     }
   }
 

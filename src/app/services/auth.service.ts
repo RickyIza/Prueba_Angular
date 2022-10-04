@@ -7,12 +7,12 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 
-  private baseUrl:string='https://my.api.mockaroo.com/prueba?key=ec124670'
+  private baseUrl:string='https://ecovitali.presttoapp.net/Puertto/PostCalidad/Api/api/Login'
 
   constructor(private http : HttpClient) { 
   }
 
-  login(){
+  login():Observable<any>{
     return this.http.get<any>(this.baseUrl)
 
   }
