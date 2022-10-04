@@ -1,0 +1,21 @@
+
+.card1{
+background-color: #19AF5E;
+color: white;
+}
+.container-principal{
+    background-image: url(../../../assets/img/PLANTILLA.jpeg);
+    margin: 0;
+    padding: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+.img1{
+    margin: 33px;
+}
+.txt1{
+    padding-top: 3px;
+    
+}

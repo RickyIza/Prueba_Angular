@@ -1,0 +1,9 @@
+{
+
+    "/api/*":{
+        "target":"https://ecovitali.presttoapp.net/Puertto/PostCalidad/Api/api",
+        "secure": true,
+        "logLevel":"debug",
+        "changeOrigin":true
+    }
+}

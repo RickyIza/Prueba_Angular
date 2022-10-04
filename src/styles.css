@@ -1,24 +1,6 @@
-html,body{
-    height: 100%;
-    
-}
+body,html{
+    margin: 0;
+    padding-bottom: 3em;
+    min-height: 100vh;
 
-.wrapper{
-
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.logo{
-
-    height: 139px;
-    margin-bottom: 10px;
-}
-
-.body{
-    max-width: 300px;
-    width: 100%;
-    text-align: center;
-    
 }
